@@ -9,7 +9,7 @@ export interface SecurityAlert {
   id: string;
   region: string;
   department: string; // Departamento
-  type: 'BLOQUEO' | 'ORDEN_PUBLICO' | 'CLIMA' | 'MOVILIZACION';
+  type: 'BLOQUEO' | 'ORDEN_PUBLICO' | 'CLIMA' | 'MOVILIZACION' | 'CULTIVOS' | 'MINERIA';
   description: string;
   timestamp: string;
   level: AlertLevel;
@@ -47,7 +47,7 @@ export interface AIReport {
   timestamp: string;
 }
 
-// --- NEW INTEL TYPES ---
+// --- INTEL TYPES ---
 
 export interface GraphNode {
   id: string;
@@ -82,4 +82,28 @@ export interface FiscalSanction {
   source: 'CONTRALORÍA' | 'PROCURADURÍA' | 'OFAC';
   reason: string;
   amount?: number;
+}
+
+export interface NewsItem {
+  id: string;
+  source: string; // 'El Tiempo', 'Semana', 'Twitter'
+  title: string;
+  time: string;
+  category: 'POLITICA' | 'JUDICIAL' | 'ORDEN_PUBLICO';
+}
+
+export interface RoyaltyProject {
+  id: string;
+  municipio: string;
+  project: string;
+  amount: number;
+  progress: number;
+}
+
+export interface CampaignDonation {
+  id: string;
+  candidate: string;
+  donor: string;
+  amount: number;
+  party: string;
 }

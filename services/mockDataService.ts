@@ -1,4 +1,4 @@
-import { SecurityAlert, AlertLevel, Contract, EconomicIndicator, LegislativeBill, GraphNode, GraphLink, TrackedObject, FiscalSanction } from '../types';
+import { SecurityAlert, AlertLevel, Contract, EconomicIndicator, LegislativeBill, GraphNode, GraphLink, TrackedObject, FiscalSanction, NewsItem, RoyaltyProject, CampaignDonation } from '../types';
 
 // Simulate the "current_situation.json" output from the Python backend
 export const getSecurityAlerts = (): SecurityAlert[] => [
@@ -41,6 +41,27 @@ export const getSecurityAlerts = (): SecurityAlert[] => [
     timestamp: new Date().toISOString(),
     level: AlertLevel.HIGH,
     coordinates: { x: 35, y: 35 }
+  },
+  // Extra points for layers
+  {
+    id: '5',
+    region: 'Antioquia',
+    department: 'Bajo Cauca',
+    type: 'MINERIA',
+    description: 'Minería ilegal detectada en río Nechí.',
+    timestamp: new Date().toISOString(),
+    level: AlertLevel.HIGH,
+    coordinates: { x: 38, y: 30 }
+  },
+  {
+    id: '6',
+    region: 'Catatumbo',
+    department: 'Norte de Santander',
+    type: 'CULTIVOS',
+    description: 'Aumento densidad hoja de coca.',
+    timestamp: new Date().toISOString(),
+    level: AlertLevel.HIGH,
+    coordinates: { x: 55, y: 25 }
   }
 ];
 
@@ -114,10 +135,10 @@ export const getEconomicData = (): EconomicIndicator[] => {
       history: generateHistory(82, 2)
     },
     {
-      name: 'Café (Cent/Lb)',
-      value: 215.5,
+      name: 'BVC Colcap',
+      value: 1350.5,
       change: 0.8,
-      history: generateHistory(215, 5)
+      history: generateHistory(1350, 10)
     }
   ];
 };
@@ -136,17 +157,8 @@ export const getLegislativeBills = (): LegislativeBill[] => [
     title: 'Ley Estatutaria de Educación',
     stage: 'Comisión Primera',
     lastUpdate: 'Hace 4 horas'
-  },
-  {
-    id: 'PL-055',
-    code: 'PL 055/24',
-    title: 'Regulación de Inteligencia Artificial',
-    stage: 'Cámara - Debate',
-    lastUpdate: 'Ayer'
   }
 ];
-
-// --- NEW DATA SOURCES ---
 
 export const getPowerGraph = (): { nodes: GraphNode[], links: GraphLink[] } => {
   return {
@@ -178,5 +190,23 @@ export const getTacticalTraffic = (): TrackedObject[] => [
 export const getFiscalSanctions = (): FiscalSanction[] => [
   { id: 's1', entityName: 'Constructora del Norte SAS', idNumber: '900.123.456', source: 'CONTRALORÍA', reason: 'Resp. Fiscal por obra inconclusa', amount: 5000000000 },
   { id: 's2', entityName: 'Juan Pérez (Ex-Alcalde)', idNumber: '79.xxx.xxx', source: 'PROCURADURÍA', reason: 'Inhabilidad por 10 años' },
-  { id: 's3', entityName: 'Suministros Globales', idNumber: '901.xxx.xxx', source: 'OFAC', reason: 'Lista Clinton (Simulado)' },
+];
+
+export const getNews = (): NewsItem[] => [
+  { id: 'n1', source: 'El Tiempo', title: 'Gobierno anuncia nuevo decreto de orden público', time: '10:30 AM', category: 'POLITICA' },
+  { id: 'n2', source: 'Semana', title: 'Exclusivo: Los audios del escándalo en la UNGRD', time: '09:15 AM', category: 'JUDICIAL' },
+  { id: 'n3', source: 'Twitter', title: 'Reportan bloqueos en la vía Panamericana #ParoNacional', time: '11:00 AM', category: 'ORDEN_PUBLICO' },
+  { id: 'n4', source: 'La Silla', title: 'El mapa de poder en el Congreso tras la reforma', time: '08:45 AM', category: 'POLITICA' },
+];
+
+export const getRoyalties = (): RoyaltyProject[] => [
+  { id: 'r1', municipio: 'Puerto Gaitán', project: 'Pavimentación Vía Principal', amount: 15000000000, progress: 35 },
+  { id: 'r2', municipio: 'Arauca', project: 'Construcción Acueducto Veredal', amount: 8500000000, progress: 12 },
+  { id: 'r3', municipio: 'Montelíbano', project: 'Dotación Hospital Nivel 2', amount: 22000000000, progress: 85 },
+];
+
+export const getCampaignDonations = (): CampaignDonation[] => [
+  { id: 'c1', candidate: 'Pedro Gomez', party: 'Partido A', donor: 'Inversiones Los Andes', amount: 50000000 },
+  { id: 'c2', candidate: 'Maria Lopez', party: 'Movimiento B', donor: 'Grupo Constructor del Sur', amount: 120000000 },
+  { id: 'c3', candidate: 'Juan Diaz', party: 'Partido C', donor: 'Suministros del Norte SAS', amount: 35000000 },
 ];
